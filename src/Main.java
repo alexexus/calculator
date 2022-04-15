@@ -67,13 +67,7 @@ public class Main {
                 throw new Exception("Значения должны быть от 1 до 10 включительно");
             }
 
-            switch (arr[1]) {
-                case "+" -> result = a + b;
-                case "-" -> result = a - b;
-                case "*" -> result = a * b;
-                case "/" -> result = a / b;
-                default -> throw new IllegalStateException("Недопустимый оператор: " + arr[1]);
-            }
+            result = getResult(arr, a, b);
             System.out.println(result);
         }
 
@@ -107,17 +101,24 @@ public class Main {
             int result;
             int a = Integer.parseInt(arr[0]);
             int b = Integer.parseInt(arr[2]);
-            switch (arr[1]) {
-                case "+" -> result = a + b;
-                case "-" -> result = a - b;
-                case "*" -> result = a * b;
-                case "/" -> result = a / b;
-                default -> throw new IllegalStateException("Недопустимый оператор: " + arr[1]);
-            }
+
+            result = getResult(arr, a, b);
             if (result < 1) {
                 throw new Exception("В римской системе нет отрицательных чисел");
             }
             System.out.println(toRoman(result));
         }
+    }
+
+    private static int getResult(String[] arr, int a, int b) {
+        int result;
+        switch (arr[1]) {
+            case "+" -> result = a + b;
+            case "-" -> result = a - b;
+            case "*" -> result = a * b;
+            case "/" -> result = a / b;
+            default -> throw new IllegalStateException("Недопустимый оператор: " + arr[1]);
+        }
+        return result;
     }
 }
